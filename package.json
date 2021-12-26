@@ -1,5 +1,5 @@
 {
-  "name": "weblw2",
+  "name": "weblab3_5",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,10 @@
     "lint:fix": "eslint ./ --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sviatoslav",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.1.0",
+    "eslint": "^8.5.0",
     "eslint-config-import": "^0.13.0",
     "eslint-config-metarhia": "^7.0.1",
     "eslint-config-prettier": "^8.3.0",
@@ -45,5 +45,5 @@
     "url": "https://github.com/Sviatoslav-dev/WebLab2/issues"
   },
   "homepage": "https://github.com/Sviatoslav-dev/WebLab2#readme",
-  "description": ""
+  "description": "WebLab3_5"
 }

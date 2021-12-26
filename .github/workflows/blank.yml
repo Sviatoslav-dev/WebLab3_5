@@ -30,4 +30,4 @@ jobs:
           pip install pylint
       - name: Analysing the code with pylint
         run: |
-          python -m pylint main.py sanitizer.py
+          python -m pylint main.py controllers/note.py controllers/user.py core/__init__.py model/base.py model/note.py model/user.py

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+  </head>
+  <body>
+    <form id="form" method="POST" class="form-contact">
+      <section class="form-contains">
+        <h1>Registration</h1>
+        <p>
+          <input
+            class="input"
+            type="text"
+            placeholder="Name"
+            name="name"
+            value=""
+            required
+          />
+        </p>
+        <p>
+          <input
+            class="input"
+            type="password"
+            placeholder="password"
+            name="password"
+            value=""
+            required
+          />
+        </p>
+        <a href="/" class="log-reg">log-in</a>
+        <p><input class="submit-button" type="submit" value="register" /></p>
+        <div id="snackbar">Some text some message..</div>
+      </section>
+    </form>
+  </body>
+</html>

@@ -4,3 +4,8 @@ disable=
     E0401, # import-error
     C0116, # missing-function-docstring
     W0703, # broad-except
+    R0801, # duplicate-code
+    E0011, # unrecognized-inline-option
+    C0115, # missing-class-docstring
+    C0206, # consider-using-dict-items
+    E1101, # no-member
