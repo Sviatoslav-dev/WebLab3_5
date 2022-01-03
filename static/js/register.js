@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
+  const snackbar = document.getElementById('snackbar');
   form.addEventListener('submit', SubmitEntry);
 
   async function SubmitEntry(e) {
@@ -35,15 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
       toast('Registered successfully');
     }).catch(error => {
-      toast(error, 'red');
+      form.classList.remove('sending');
+      toast(error, false);
     });
   }
 
-  function toast(text, color = '#333') {
-    const snackbar = document.getElementById('snackbar');
+  function setCssVar(name, value) {
+    document.documentElement.style.setProperty(name, value);
+  }
+
+  function toast(text, success = true) {
+    if (success) {
+      setCssVar('--snakebar-background-color', '#333');
+    } else {
+      setCssVar('--snakebar-background-color', 'red');
+    }
     snackbar.className = 'show';
     snackbar.innerText = text;
-    snackbar.style.backgroundColor = color;
     setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 });

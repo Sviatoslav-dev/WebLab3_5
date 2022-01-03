@@ -1,10 +1,18 @@
 :root {
-  --silver-color: #7bed9f;
+  --body-background-color: #7bed9f;
+  --todo-background-color: #2ed573;
+  --todo-box-shadow: #074b83;
+  --checkbox-border-color: #ddd;
   --eclipse-color: rgb(51 51 51 / 80%);
-  --midnigth-blue-color: #70a1ff;
-  --clouds-color: #eccc68;
-  --nephiritis-color: #5352ed;
+  --h1-text-color: #fff;
+  --input-background-color: #eccc68;
+  --input-checked-color: blue;
+  --submit-button-background-color: #5352ed;
   --shadow-color: rgb(0 0 0 / 30%);
+  --snakebar-background-color: #333;
+  --snackbar-color: #fff;
+  --snackbar-text: "";
+  --a-color: #2f3542;
 }
 
 body {
@@ -13,7 +21,7 @@ body {
   border: none;
   font-size: 1.5em;
   width: 100vw;
-  background-color: var(--silver-color);
+  background-color: var(--body-background-color);
 }
 
 .form-contact {
@@ -58,12 +66,12 @@ h1 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 20px;
-  color: #fff;
+  color: var(--h1-text-color);
 }
 
 .input {
   width: 100%;
-  background-color: var(--clouds-color);
+  background-color: var(--input-background-color);
 }
 
 .submit-button {
@@ -71,7 +79,7 @@ h1 {
   right: 0;
   width: 40%;
   height: 10%;
-  background-color: var(--nephiritis-color);
+  background-color: var(--submit-button-background-color);
 }
 
 .input,
@@ -85,8 +93,8 @@ h1 {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--snakebar-background-color);
+  color: var(--snackbar-color);
   text-align: center;
   border-radius: 2px;
   padding: 16px;
@@ -117,12 +125,6 @@ h1 {
   to { bottom: 0; opacity: 0%; }
 }
 
-/* body {
-  background-color: #FFD78A;
-  font-family: sans-serif;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box; } */
-
 .container {
   margin: 0 auto;
   padding-top: 50px;
@@ -132,10 +134,10 @@ h1 {
   max-width: 400px;
   display: block;
   margin: 0 auto 40px;
-  background-color: #2ed573;
+  background-color: var(--todo-background-color);
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px 0 #074b83;
+  box-shadow: 0 2px 10px 0 var(--todo-box-shadow);
 }
 
 .create-new-todo {
@@ -164,7 +166,7 @@ input[type="text"] {
 }
 
 .del {
-  background: url("../images/trash.jpg") no-repeat;
+  background: url("../images/trash.jpg");
   font-size: 20px;
   margin-right: 0;
   width: 20px;
@@ -200,9 +202,9 @@ label {
 
 input[type="checkbox"] + label::before {
   content: "";
-  background: #1ba39c;
+  background: var(--todo-background-color);
   border-radius: 5px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--checkbox-border-color);
   display: inline-block;
   vertical-align: middle;
   width: 10px;
@@ -217,7 +219,7 @@ input[type="checkbox"]:checked + label::before {
   display: inline-block;
   width: 1px;
   height: 5px;
-  border: solid blue;
+  border: solid var(--input-checked-color);
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
   border-radius: 0;
@@ -226,5 +228,5 @@ input[type="checkbox"]:checked + label::before {
 
 a {
   outline: none;
-  color: #2f3542;
+  color: var(--a-color);
 }

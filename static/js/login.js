@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
+  const snackbar = document.getElementById('snackbar');
   form.addEventListener('submit', SubmitEntry);
 
   if (localStorage.getItem('token') !== null) {
@@ -15,19 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(response => {
       if (response.status !== 405 && response.status !== 403) {
         postForm('/todo_list', { token: localStorage.getItem('token') });
+        return Promise.resolve(response);
+      } else {
+        return Promise.reject(new Error(response.statusText));
       }
+    }).catch(() => {
+      console.log('the token is out of date');
     });
   }
 
   async function SubmitEntry(e) {
     e.preventDefault();
-
-
-    const formData = new FormData(form);
+    const formElements = form.elements;
     const entry = {};
 
-    for (const key of formData.keys()) {
-      entry[key] = formData.get(key);
+    for (const el in formElements) {
+      entry[el] = formElements[el].value;
     }
 
     form.classList.add('sending');
@@ -52,15 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
       toast('Login successfully');
       postForm('/todo_list', { token: localStorage.getItem('token') });
     }).catch(() => {
-      toast('Wrong name or password', 'red');
+      form.classList.remove('sending');
+      toast('Wrong name or password', false);
     });
   }
 
-  function toast(text, color = '#333') {
-    const snackbar = document.getElementById('snackbar');
+  function setCssVar(name, value) {
+    document.documentElement.style.setProperty(name, value);
+  }
+
+  function toast(text, success = true) {
+    if (success) {
+      setCssVar('--snakebar-background-color', '#333');
+    } else {
+      setCssVar('--snakebar-background-color', 'red');
+    }
     snackbar.className = 'show';
     snackbar.innerText = text;
-    snackbar.style.backgroundColor = color;
     setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 
