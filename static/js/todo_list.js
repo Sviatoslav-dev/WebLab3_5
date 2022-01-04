@@ -84,12 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
     checkboxes.forEach(item => {
       item.addEventListener('change', e => {
         const id = parseInt(e.target.parentNode.id.slice(3));
-        updateItem(id);
+        updateItem(id, item);
       });
     });
   }
 
-  function updateItem(itemI) {
+  function updateItem(itemI, item) {
     fetch('/todo_list/update', {
       method: 'POST',
       body: JSON.stringify({ id: todoList[itemI]['id'], checked: !todoList[itemI]['checked'] }),
@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(() => {
       todoList[itemI]['checked'] = !todoList[itemI]['checked'];
     }).catch(e => {
+      item.checked = todoList[itemI]['checked'];
       toast(e, false);
     });
   }
