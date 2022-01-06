@@ -31,8 +31,7 @@ app = create_app()
 def check_for_token(func):
     @wraps(func)
     def wrapped(*args, **kwargs):
-        #print(request.get_json())
-        token = request.form.get('token') #request.args.get('token')
+        token = request.form.get('token')
         if token is None:
             token = request.get_json()
             token = token['token']
@@ -51,6 +50,9 @@ def check_for_token(func):
 def index():
     return render_template("login.html")
 
+@app.route('/todo_list')
+def todo_list2():
+    return redirect('/')
 
 @app.route('/todo_list', methods=["POST"])
 @check_for_token
