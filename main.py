@@ -51,7 +51,7 @@ def index():
     return render_template("login.html")
 
 @app.route('/todo_list')
-def todo_list2():
+def todo_list_redirect():
     return redirect('/')
 
 @app.route('/todo_list', methods=["POST"])
