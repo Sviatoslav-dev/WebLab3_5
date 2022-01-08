@@ -9,12 +9,12 @@ import jwt
 from controllers.user import add_user, get_user_by_name
 from controllers.note import get_notes_by_user_id, add_note, update_note, delete_note
 
-from core import DB_URL, db
+from core import db
 
 
 def create_app():
     new_app = Flask(__name__, instance_relative_config=False)
-    new_app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+    new_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB_URL']
     new_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     new_app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
