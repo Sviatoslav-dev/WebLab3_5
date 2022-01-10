@@ -18,7 +18,7 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npx npm-run-parallel lint lint:css lint:fmt
+      - run: npx npm-run-parallel lint lint:css
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
