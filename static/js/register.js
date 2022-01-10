@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'content-type': 'application/json',
       }),
     }).then(response => {
-      form.classList.remove('sending');
       if (response.status === 200) {
         return Promise.resolve(response);
       } else {
@@ -36,8 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
       toast('Registered successfully');
     }).catch(error => {
-      form.classList.remove('sending');
       toast(error, false);
+    }).then(() => {
+      form.classList.remove('sending');
     });
   }
 

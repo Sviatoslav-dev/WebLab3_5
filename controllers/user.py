@@ -13,13 +13,9 @@ def get_all_users():
 
 
 def add_user(data):
-    try:
-        new_record = User.create(**data)
-        new_user = {k: v for k, v in new_record.__dict__.items() if k in USER_FIELDS}
-        return new_user
-    except Exception as err:
-        err = str(err)
-        return err
+    new_record = User.create(**data)
+    new_user = {k: v for k, v in new_record.__dict__.items() if k in USER_FIELDS}
+    return new_user
 
 
 def get_user_by_id(data):

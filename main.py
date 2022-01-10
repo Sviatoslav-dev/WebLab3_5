@@ -28,11 +28,11 @@ def create_app():
 
 app = create_app()
 
+
 def check_for_token(func):
     @wraps(func)
     def wrapped(*args, **kwargs):
-        #print(request.get_json())
-        token = request.form.get('token') #request.args.get('token')
+        token = request.form.get('token')
         if token is None:
             token = request.get_json()
             token = token['token']
@@ -45,7 +45,9 @@ def check_for_token(func):
         except Exception:
             return redirect('')
         return func(*args, **kwargs)
+
     return wrapped
+
 
 @app.route('/')
 def index():
@@ -123,8 +125,9 @@ def send():
         add_user(req)
         res = jsonify({"result": "succes"})
         return make_response(res, 200)
-    except Exception:
-        res = jsonify({"result": "error"})
+    except Exception as e:
+        print(e)
+        res = jsonify({"result": str(e)})
         return make_response(res, 400)
 
 
