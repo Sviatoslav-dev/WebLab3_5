@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
   form.addEventListener('submit', SubmitEntry);
 
+  const fetchOptions = {
+    method: 'POST',
+    cache: 'no-cache',
+    headers: new Headers({
+      'content-type': 'application/json',
+    }) };
+
   async function SubmitEntry(e) {
     e.preventDefault();
 
@@ -12,12 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.classList.add('sending');
     fetch('/register/send', {
-      method: 'POST',
+      ...fetchOptions,
       body: JSON.stringify(entry),
-      cache: 'no-cache',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
     }).then(response => {
       if (response.status === 200) {
         return Promise.resolve(response);

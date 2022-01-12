@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
   form.addEventListener('submit', SubmitEntry);
 
+  const fetchOptions = {
+    method: 'POST',
+    cache: 'no-cache',
+    headers: new Headers({
+      'content-type': 'application/json',
+    }) };
+
   if (localStorage.getItem('token') !== null) {
     fetch('/todo_list', {
-      method: 'POST',
+      ...fetchOptions,
       body: JSON.stringify({ token: localStorage.getItem('token') }),
-      cache: 'no-cache',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
     }).then(response => {
       if (response.status !== 405 && response.status !== 403) {
         postForm('/todo_list', { token: localStorage.getItem('token') });
@@ -33,12 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.classList.add('sending');
     fetch('/log_send', {
-      method: 'POST',
+      ...fetchOptions,
       body: JSON.stringify(entry),
-      cache: 'no-cache',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
     }).then(response => {
       form.classList.remove('sending');
       if (response.status === 200) {
