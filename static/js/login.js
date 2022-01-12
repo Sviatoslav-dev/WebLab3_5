@@ -1,8 +1,8 @@
-'use strict';
+
+import { toast } from './toast.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
-  const snackbar = document.getElementById('snackbar');
   form.addEventListener('submit', SubmitEntry);
 
   if (localStorage.getItem('token') !== null) {
@@ -22,17 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }).catch(() => {
       console.log('the token is out of date');
+      toast('login time elapsed, you need to re-login');
     });
   }
 
   async function SubmitEntry(e) {
     e.preventDefault();
-    const formElements = form.elements;
-    const entry = {};
 
-    for (const el in formElements) {
-      entry[el] = formElements[el].value;
-    }
+    const entry = Object.fromEntries(Array.from(form.elements).map(el => [el.name, el.value]));
 
     form.classList.add('sending');
     fetch('/log_send', {
@@ -59,21 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
       form.classList.remove('sending');
       toast('Wrong name or password', false);
     });
-  }
-
-  function setCssVar(name, value) {
-    document.documentElement.style.setProperty(name, value);
-  }
-
-  function toast(text, success = true) {
-    if (success) {
-      setCssVar('--snakebar-background-color', '#333');
-    } else {
-      setCssVar('--snakebar-background-color', 'red');
-    }
-    snackbar.className = 'show';
-    snackbar.innerText = text;
-    setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 
   function postForm(path, params, method) {

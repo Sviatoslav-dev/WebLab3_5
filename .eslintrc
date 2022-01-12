@@ -5,5 +5,8 @@
   },
   "rules": {
     "max-len": ["error", { "code": 200 }]
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

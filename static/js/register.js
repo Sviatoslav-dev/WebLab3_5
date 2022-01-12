@@ -1,21 +1,14 @@
-'use strict';
+
+import { toast } from './toast.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form');
-  const snackbar = document.getElementById('snackbar');
   form.addEventListener('submit', SubmitEntry);
 
   async function SubmitEntry(e) {
     e.preventDefault();
 
-
-    const formData = new FormData(form);
-
-    const entry = {};
-
-    for (const key of formData.keys()) {
-      entry[key] = formData.get(key);
-    }
+    const entry = Object.fromEntries(Array.from(form.elements).map(el => [el.name, el.value]));
 
     form.classList.add('sending');
     fetch('/register/send', {
@@ -39,20 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(() => {
       form.classList.remove('sending');
     });
-  }
-
-  function setCssVar(name, value) {
-    document.documentElement.style.setProperty(name, value);
-  }
-
-  function toast(text, success = true) {
-    if (success) {
-      setCssVar('--snakebar-background-color', '#333');
-    } else {
-      setCssVar('--snakebar-background-color', 'red');
-    }
-    snackbar.className = 'show';
-    snackbar.innerText = text;
-    setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
   }
 });
