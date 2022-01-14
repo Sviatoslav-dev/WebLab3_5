@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo-list">
+        <button class="log-out">log out</button>
+        <h1>ToDo list</h1>
+        <div class="create-new-todo">
+          <input type="text" class="message" placeholder="Description" />
+          <button class="add">Add</button>
+        </div>
+
+        <div class="wrapper">
+          <ul class="todo"></ul>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='js/todo_list.js') }}"></script>
+    <div id="snackbar">Some text some message..</div>
+  </body>
+</html>

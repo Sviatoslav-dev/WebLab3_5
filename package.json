@@ -1,0 +1,48 @@
+{
+  "name": "weblab3_5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "lint:css": "stylelint \"**/css/*.css\"",
+    "lint:fix": "eslint ./ --fix"
+  },
+  "keywords": [],
+  "author": "Sviatoslav",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-metarhia": "^7.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "2.4.1",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard": "^23.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staget"
+    }
+  },
+  "lint-staget": {
+    "*.js": [
+      "npm run eslint ./src",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "eslint-plugin-import": "^2.25.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sviatoslav-dev/WebLab2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sviatoslav-dev/WebLab2/issues"
+  },
+  "homepage": "https://github.com/Sviatoslav-dev/WebLab2#readme",
+  "description": "WebLab3_5"
+}
